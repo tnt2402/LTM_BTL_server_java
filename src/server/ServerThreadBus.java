@@ -32,11 +32,7 @@ public class ServerThreadBus {
     
     public void mutilCastSend(String message){ //like sockets.emit in socket.io
         for(ServerThread serverThread : Server.serverThreadBus.getListServerThreads()){
-            try {
-                serverThread.write(message);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            serverThread.write(message);
         }
     }
     
@@ -46,11 +42,7 @@ public class ServerThreadBus {
             if (serverThread.getClientNumber() == id) {//Nếu serverThread nhận ClientNumber == id thì tiếp tục 
                 continue;
             } else {
-                try {
-                    serverThread.write(message);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                serverThread.write(message);
             }
         }
     }
@@ -76,12 +68,8 @@ public class ServerThreadBus {
         //sau đó thông qua chuỗi global-message để hiển thị lên màn hình hiển thị tin nhắn
         for(ServerThread serverThread : Server.serverThreadBus.getListServerThreads()){
             if(serverThread.getClientNumber()==id){
-                try {
-                    serverThread.write("global-message"+","+message);
-                    break;
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                serverThread.write("global-message"+","+message);
+                break;
             }
         }
     }
