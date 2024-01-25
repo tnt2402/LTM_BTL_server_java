@@ -149,6 +149,16 @@ public class RoomDAO {
 
     private static String getValueFromField(String field) {
         // Remove the field name and any leading/trailing white spaces
-        return field.substring(field.indexOf('=') + 1).trim();
+        String value = field.substring(field.indexOf('=') + 1).trim();
+
+        if (value.endsWith("}")) {
+            value = value.substring(0, value.length()-1);
+        }
+        // Remove single quotes ('') if present
+        if (value.startsWith("'") && value.endsWith("'")) {
+            value = value.substring(1, value.length() - 1);
+        }
+
+        return value;
     }
 }

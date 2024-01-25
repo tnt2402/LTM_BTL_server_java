@@ -86,11 +86,7 @@ public class ServerThreadBus {
 
     public void send2AllCompetitor(String message){ //like sockets.emit in socket.io
         for(ServerThread serverThread : Server.serverThreadBus.getListCompetitorThreads()){
-            try {
-                serverThread.write(message);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            serverThread.write(message);
         }
 
     }
